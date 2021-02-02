@@ -41,7 +41,7 @@ const getOneSkill = (req, res) => {
     let name = req.params.name;
     Skill.find({name:name}, (err, data)=>{
         if (err || !data){
-            return res.status(500).json({message: "Skill not exist"});
+            return res.status(400).json({message: "Skill not exist"});
         }
         return res.status(200).json(data);
     })
@@ -52,7 +52,7 @@ const deleteOneSkill = (req, res) => {
     let name = req.params.name;
     Skill.deleteOne({name:name}, (err,data) => {
         if(err || !data) {
-          return res.status(500).json({message: "Skill doesn't exist."});
+          return res.status(400).json({message: "Skill doesn't exist."});
         }
         return res.status(204).json({message: "Complete delete successful"});
     })
@@ -70,8 +70,26 @@ const deleteAllSkills = (req, res) => {
 
 
 //PUT '/skills/:id'
-const editOneSkill = (req, res, next) => {
-    res.json({message: "EDIT 1 skill"});
+const editOneSkill = (req, res) => {
+    let name = req.body.name;
+    let icon = req.body.icon;
+    Skill.findOne({name: name}, (err, data) => {
+        if(err || !data) {
+          return res.status(500).json(err,{message: "Skill doesn't exist."});
+        }
+        else{
+            data.name = name;
+            data.icon = icon;
+            data.save(err => {
+                if (err) { 
+                return res.json({message: "Comment failed to add.", error:err});
+                }
+                return res.status(200).json(data);
+            }) 
+        }
+
+    })
+
 };
 
 

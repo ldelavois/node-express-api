@@ -6,7 +6,8 @@ router.get('/skills', skillController.getAllSkills);
 router.post('/skills', skillController.newSkill);
 router.delete('/skills', skillController.deleteAllSkills);
 
-router.get('/skills/:id', skillController.getOneSkill);
-router.delete('/skills/:id', skillController.deleteOneSkill);
+router.get('/skills/:name', skillController.getOneSkill);
+router.put('/skills/:name', skillController.editOneSkill);
+router.delete('/skills/:name', skillController.deleteOneSkill);
 
 module.exports = router;
