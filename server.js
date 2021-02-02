@@ -1,10 +1,14 @@
 const express = require("express");
 const routes = require('./routes/skill'); // import the routes
+const compression = require('compression');
 const app = express();
+app.use(compression());
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 require('dotenv').config();
 
 app.use(express.json());
+app.use(helmet());
 
 app.use('/', routes);
 app.use('/uploads', express.static('./uploads'));
