@@ -67,26 +67,16 @@ const deleteAllSkills = (req, res) => {
         return res.status(204).json({message: "Complete delete successful"});
     })
 };
-//GET '/skills/:id'
-const getOneSkill = (req, res, next) => {
-    res.json({message: "GET 1 skill"});
-};
+
 
 //PUT '/skills/:id'
 const editOneSkill = (req, res, next) => {
     res.json({message: "EDIT 1 skill"});
 };
 
-//DELETE '/skills/:id'
-const deleteOneSkill = (req, res, next) => {
-    res.json({message: "DELETE 1 skill"});
-};
-
-
 
 //export controller functions
 module.exports = {
-    uploadImg,
     getAllSkills, 
     newSkill,
     deleteAllSkills,
