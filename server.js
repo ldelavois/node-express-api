@@ -1,5 +1,6 @@
 const express = require("express");
-const routes = require('./routes/skill'); // import the routes
+const routeSkill = require('./routes/skill'); // import the routes
+const routeProject = require('./routes/project'); // import the routes
 const compression = require('compression');
 const app = express();
 app.use(compression());
@@ -10,7 +11,8 @@ require('dotenv').config();
 app.use(express.json());
 app.use(helmet());
 
-app.use('/', routes);
+app.use('/', routeSkill);
+app.use('/', routeProject);
 app.use('/uploads', express.static('./uploads'));
 
 // add midddleware here
